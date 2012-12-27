@@ -1,6 +1,7 @@
-class UsersController < ApplicationController
+class UsersController< ApplicationController
   # GET /users
   # GET /users.json
+  skip_before_filter :authorize, only: :new
   def index
     @users = User.all
 
@@ -40,7 +41,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
- skip_before_filter :authorize
     @user = User.new(params[:user])
 
     respond_to do |format|
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: '#{@user.name} was successfully updated.' }
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
