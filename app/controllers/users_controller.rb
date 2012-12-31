@@ -81,4 +81,15 @@ skip_before_filter :authorize
       format.json { head :no_content }
     end
   end
+
+
+def showContacts
+   u = session[:user_id]
+   @contacts =User.find(u).contacts 
+ 
+   respond_to do |format|
+     format.html # showContacts.html.erb
+     format.json {render json: @contacts}
+   end
+ end
 end

@@ -1,6 +1,7 @@
 Addbook::Application.routes.draw do
   resources :contacts
 
+  match "/users/contacts" => "users#showContacts", via:[:get]
 
   get 'admin' => 'admin#index'
   
