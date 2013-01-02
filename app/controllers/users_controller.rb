@@ -1,7 +1,7 @@
 class UsersController< ApplicationController
   # GET /users
   # GET /users.json
-skip_before_filter :authorize
+skip_before_filter :authorize, except: :showContacts
   def index
     @users = User.all
 
@@ -45,6 +45,7 @@ skip_before_filter :authorize
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User  was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
