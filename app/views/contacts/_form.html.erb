@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :phonenumber %><br />
-    <%= f.number_field :phonenumber %>
+    <%= f.phone_field :phonenumber %>
   </div>
 
   <%= f.hidden_field :user_id, :value => session[:user_id] %>
